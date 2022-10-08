@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+body{
+  font-family: 'Roboto', sans-serif;
+}
+.tableCell{
+  height: 80px;
+}
+.tableRow:hover{
+  background-color: #383434;
+  cursor: pointer;
+}
+.screenWidth{
+  max-width: "1700px";
+  width: 90%
+}
+html {
+  scroll-behavior: smooth;
+}
