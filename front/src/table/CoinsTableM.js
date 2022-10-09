@@ -14,11 +14,13 @@ import { TableFooter, Typography } from "@mui/material";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { useNavigate} from "react-router-dom";
 
 export default function CoinsTableM(props) {
   const [coins, setCoins] = useState(null);
   const [page, setPage] = useState(1);
   const [coinsPerPage, setCoinsPerPage] = useState(10);
+  const navigate = useNavigate();
   useEffect(() => {
     axios
       .get(`http://localhost:3000/api/v1/coins/market/${coinsPerPage}/${page}`, {
@@ -34,16 +36,18 @@ export default function CoinsTableM(props) {
   };
   const handleCoinsChange = (event) => {
     setCoinsPerPage(event.target.value);
+    
   };
+  const HandleRowClick=(id)=>{
+    props.selectCoinID(id)
+    navigate('/'+id)
+  }
   const displayCoins = () => {
     return coins != null ? (
       coins.markets.map((row) => (
         <TableRow
           className="tableRow"
-          onClick={()=>{
-            props.selectCoinID(row.id)
-            props.handleRef()
-          }}
+          onClick={()=>HandleRowClick(row.id)}
           key={row.name}
           sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
         >
@@ -51,7 +55,7 @@ export default function CoinsTableM(props) {
             <img
               src={row.image}
               _
-              style={{ width: "48px", height: "48px", display: "inline-block" }}
+              style={{ width: "35px", height: "35px", display: "inline-block" }}
             ></img>
             <div style={{ marginLeft: "10px", display: "inline-block" }}>
               <Typography>{row.name}</Typography>

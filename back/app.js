@@ -1,6 +1,6 @@
 const express = require('express');
 const app= express();
-const coins =require('./routes/coins')
+const coins =require('./routes/coinsRoutes')
 const port= 3000
 
 app.use(express.json());

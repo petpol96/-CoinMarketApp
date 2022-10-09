@@ -5,6 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Headerline from "./table/Header";
 import CoinInfo from "./CoinInfo";
 import { useRef, useState } from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 const darkTheme = createTheme({
   palette: {
@@ -13,21 +14,26 @@ const darkTheme = createTheme({
 });
 function App() {
   const [selectedCoinID, setSelectedCoinID] = useState(null);
-  const ref = useRef(null);
 
-  const handleRef = () => {
-    ref.current?.scrollIntoView({ behavior: "smooth" });
-    console.log("clicked");
-  };
   return (
-    <ThemeProvider theme={darkTheme}>
-      <CssBaseline />
+    <Router>
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
       <Headerline />
-      <div ref={ref}>
-        <CoinInfo selectedCoinID={selectedCoinID} />
-      </div>
-      <CoinsTableM selectCoinID={setSelectedCoinID} handleRef={handleRef} />
-    </ThemeProvider>
+      <Routes>
+        <Route
+          path={`/:${selectedCoinID}`}
+          element={
+            <CoinInfo selectedCoinID={selectedCoinID}/>
+          }
+        />
+        <Route
+          path="/"
+          element={<CoinsTableM selectCoinID={setSelectedCoinID} />}
+        ></Route>
+      </Routes>
+      </ThemeProvider>
+    </Router>
   );
 }
 
