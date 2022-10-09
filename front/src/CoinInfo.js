@@ -75,19 +75,20 @@ export default function CoinInfo(props) {
                   {" "}
                   {coin.high_24h}$
                 </Typography>
-                <Typography
-                  sx={{
-                    marginLeft: "10px",
-                    marginTop: "10px",
-                  }}
-                  className='sameLine'
-                >
-                  Lowest Price last 24H:
-                </Typography>
-                <Typography sx={{ display: "inline-block", color: "#FF9494" }}>
-                  {" "}
-                  {coin.low_24h}$
-                </Typography>
+                <div className="LowTextCoinScreen">
+                  <Typography
+                    sx={{
+                      marginTop: "10px",
+                      display:"inline-block"
+                    }}
+                  >
+                    Lowest Price last 24H:
+                  </Typography>
+                  <Typography sx={{ color: "#FF9494" ,display:"inline-block"}}>
+                    {" "}
+                    {coin.low_24h}$
+                  </Typography>
+                </div>
               </div>
               <Typography
                 variant="h5"
@@ -95,8 +96,16 @@ export default function CoinInfo(props) {
               >
                 Price Change
               </Typography>
-              <TableContainer component={Paper} sx={{ width:'80%',maxWidth:'1200px',marginLeft:'50px',marginTop:'10px'}}>
-                <Table  aria-label="simple table">
+              <TableContainer
+                component={Paper}
+                sx={{
+                  width: "80%",
+                  maxWidth: "1200px",
+                  marginLeft: "50px",
+                  marginTop: "10px",
+                }}
+              >
+                <Table aria-label="simple table">
                   <TableHead>
                     <TableRow>
                       <TableCell>24h</TableCell>
@@ -109,19 +118,61 @@ export default function CoinInfo(props) {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                      <TableRow
+                    <TableRow
+                      sx={{
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
+                    >
+                      <TableCell
                         sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
+                          color: colorPicker(coin.price_change_percentage_24h),
                         }}
                       >
-                        <TableCell sx={{color:colorPicker(coin.price_change_percentage_24h)}}>{coin.price_change_percentage_24h}%</TableCell>
-                        <TableCell sx={{color:colorPicker(coin.price_change_percentage_7d)}}>{coin.price_change_percentage_7d}%</TableCell>
-                        <TableCell sx={{color:colorPicker(coin.price_change_percentage_14d)}}>{coin.price_change_percentage_14d}%</TableCell>
-                        <TableCell sx={{color:colorPicker(coin.price_change_percentage_30d)}}>{coin.price_change_percentage_30d}%</TableCell>
-                        <TableCell sx={{color:colorPicker(coin.price_change_percentage_60d)}}>{coin.price_change_percentage_60d}%</TableCell>
-                        <TableCell sx={{color:colorPicker(coin.price_change_percentage_200d)}}>{coin.price_change_percentage_200d}%</TableCell>
-                        <TableCell sx={{color:colorPicker(coin.price_change_percentage_1y)}}>{coin.price_change_percentage_1y}%</TableCell>
-                      </TableRow>
+                        {coin.price_change_percentage_24h}%
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          color: colorPicker(coin.price_change_percentage_7d),
+                        }}
+                      >
+                        {coin.price_change_percentage_7d}%
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          color: colorPicker(coin.price_change_percentage_14d),
+                        }}
+                      >
+                        {coin.price_change_percentage_14d}%
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          color: colorPicker(coin.price_change_percentage_30d),
+                        }}
+                      >
+                        {coin.price_change_percentage_30d}%
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          color: colorPicker(coin.price_change_percentage_60d),
+                        }}
+                      >
+                        {coin.price_change_percentage_60d}%
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          color: colorPicker(coin.price_change_percentage_200d),
+                        }}
+                      >
+                        {coin.price_change_percentage_200d}%
+                      </TableCell>
+                      <TableCell
+                        sx={{
+                          color: colorPicker(coin.price_change_percentage_1y),
+                        }}
+                      >
+                        {coin.price_change_percentage_1y}%
+                      </TableCell>
+                    </TableRow>
                   </TableBody>
                 </Table>
               </TableContainer>

@@ -16,6 +16,15 @@ body{
 html {
   scroll-behavior: smooth;
 }
-.sameLine{
-  display:inline-block
+.LowTextCoinScreen{
+  display:inline-block;
+  margin-left: 10px;
+}
+@media only screen and (max-width: 768px) {
+  /* For mobile phones: */
+  [class*="LowTextCoinScreen"] {
+  display:inherit;
+  margin-left: 50px;
+
+  }
 }
